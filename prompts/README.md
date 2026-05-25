@@ -4,14 +4,13 @@
 
 ## 目录
 
-| 智能体 | 路径 | 产出 |
-|--------|------|------|
-| BRD | `brd/v1/` | `docs/BRD.md` |
-| 功能清单 | `pages/v1/` | `docs/页面功能清单.md` |
-| 用户故事 | `stories/v1/` | `docs/用户故事清单.md` |
-| 质检 | `qa/v1/` | 问题清单 YAML |
-| 观察 | `observer/v1/` | `observer/journal.md` |
-| GitHub 建库 | `github-init/v1/` | repo 字段 JSON + 首次 commit 清单 |
+| 智能体 | 提示词 | 固定文档 |
+|--------|--------|----------|
+| **项目初始化** | `project-init/v1/full-standalone.md` | 创建 `docs/BRD.md` 等骨架 |
+| BRD | `brd/v1/full-standalone.md` | `docs/BRD.md` |
+| 功能清单 | `pages/v1/full-standalone.md` | `docs/页面功能清单.md` |
+| 用户故事 | `stories/v1/full-standalone.md` | `docs/用户故事清单.md` |
+| 综合检查 | `qa/v1/full-standalone.md` | 对照三份 docs |
 
 ## 质检清单
 
