@@ -1,0 +1,81 @@
+id: auth
+name: 登录与注册
+product: _example
+version: "0.1"
+status: draft
+
+problem:
+  summary: C 端用户通过手机号验证码完成注册与登录
+  users:
+    - C 端注册用户
+  pain: 需低摩擦、安全的身份入口
+
+scope:
+  in:
+    - 手机号 + 短信验证码注册
+    - 手机号 + 短信验证码登录
+  out:
+    - 邮箱注册
+    - 第三方 OAuth
+
+flows:
+  main:
+    - step: 输入手机号
+      actor: user
+      note: ""
+    - step: 获取并输入验证码
+      actor: user
+      note: ""
+    - step: 校验通过，建立会话
+      actor: system
+      note: ""
+  branches:
+    - id: unregistered
+      when: 手机号未注册且走登录流程
+      then: 提示先注册或引导注册
+
+entities:
+  - name: User
+    fields:
+      - name: phone
+        type: string
+        required: true
+        note: 大陆 11 位手机号
+      - name: created_at
+        type: datetime
+        required: true
+        note: ""
+
+rules:
+  - id: R1
+    description: 验证码错误 5 次锁定 15 分钟（待确认）
+
+acceptance:
+  - id: AC-1
+    given: 未注册手机号
+    when: 完成注册流程
+    then: 创建用户并返回有效会话
+  - id: AC-2
+    given: 已注册手机号
+    when: 验证码正确
+    then: 返回有效会话
+
+non_goals:
+  - 邮箱注册
+  - 微信/Apple 登录
+
+apis: []
+
+dependencies:
+  features: []
+  external:
+    - 短信服务商
+
+open_questions:
+  - 验证码位数与 TTL？
+  - 会话 TTL？
+
+changelog:
+  - version: "0.1"
+    date: "2026-05-25"
+    summary: 示例骨架

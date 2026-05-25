@@ -1,0 +1,51 @@
+---
+description: PRD_Producer 工作流 — 对话改仓库文件，不以聊天为唯一真相
+globs:
+  - products/**/*
+  - templates/**/*
+  - scripts/prd-validate.mjs
+alwaysApply: false
+---
+
+# PRD_Producer 协作规则
+
+## 单一真相（SSOT）
+
+- 业务叙述：`products/<产品>/prd/*.md`
+- 机器规格：`products/<产品>/spec/<功能>.yaml`
+- Codegen 输入：`products/<产品>/briefs/<功能>-v<版本>.md`（仅 frozen 后生成）
+- **禁止**只在聊天里记需求而不回写文件
+
+## 意图前缀（用户未说明时，根据消息推断并声明当前模式）
+
+| 前缀 | 模式 |
+|------|------|
+| `PRD explore` | 探索 |
+| `PRD scope` | 划界 |
+| `PRD define` | 定义（人读 PRD） |
+| `PRD spec` | 规格化（yaml） |
+| `PRD review` | 审查（可先只出清单） |
+| `PRD freeze` | 冻结 |
+| `PRD change` | 冻结后变更 |
+| （实现代码） | 只读 brief，走 codegen skill |
+
+## 硬性约束
+
+1. **一次只改一个 L1 功能**（一个 `prd/xx-*.md` + 对应 `spec/*.yaml`）
+2. **Define 与 Spec 分开意图**：同对话可先 define 再 spec，但须两次明确意图并分别落盘
+3. **Freeze 前必须至少一次 `PRD review`**（本线程或用户声明已在其他会话完成）
+4. **frozen 章节**：不得静默修改；必须走 `PRD change`，bump `version`，写 `changelog`
+5. **Freeze 时**：更新 spec `status: frozen` → 运行 `npm run prd:validate -- <spec> --freeze` → 生成 brief
+6. **Codegen**：只引用 `@briefs/...`，不把整本 prd 塞进实现提示；发现需求问题应建议走 `PRD change`
+
+## 每轮结束回复格式
+
+1. **本轮模式**
+2. **变更文件列表**
+3. **变更摘要**（3～5 条）
+4. **仍缺项 / 开放问题**（若有）
+5. **建议下一步**（如：补 spec → review → freeze）
+
+## 新产品
+
+复制 `products/_example` 为 `products/<slug>`，更新 `meta.yaml`，从 `templates/` 创建章节。

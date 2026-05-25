@@ -1,0 +1,9 @@
+id: _example
+name: 示例产品
+description: 演示 PRD_Producer 目录与流程，可复制为真实产品
+features:
+  - id: auth
+    prd: prd/10-auth.md
+    spec: spec/auth.yaml
+    status: draft
+    version: "0.1"

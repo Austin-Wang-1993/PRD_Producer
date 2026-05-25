@@ -1,0 +1,64 @@
+# 机读规格 — 供 validate / codegen 使用
+id: feature-id          # 与文件名一致，如 auth
+name: 功能名称
+product: product-slug
+version: "0.1"
+status: draft           # draft | frozen
+
+problem:
+  summary: ""
+  users: []
+  pain: ""
+
+scope:
+  in: []
+  out: []
+
+flows:
+  main:
+    - step: ""
+      actor: user | system
+      note: ""
+  branches:
+    - id: ""
+      when: ""
+      then: ""
+
+entities:
+  - name: ""
+    fields:
+      - name: ""
+        type: string
+        required: true
+        note: ""
+
+rules:
+  - id: R1
+    description: ""
+
+acceptance:
+  - id: AC-1
+    given: ""
+    when: ""
+    then: ""
+
+non_goals: []
+
+apis: []                # 可选；无 API 时保持空数组
+#  - name: ""
+#    method: POST
+#    path: ""
+#    request: {}
+#    response: {}
+#    errors: []
+
+dependencies:
+  features: []
+  external: []
+
+open_questions: []
+
+changelog:
+  - version: "0.1"
+    date: ""
+    summary: 初稿

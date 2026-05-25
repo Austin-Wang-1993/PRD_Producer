@@ -1,0 +1,14 @@
+{
+  "name": "prd-producer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PRD 需求文档自动化流水线 — Cursor + 结构化仓库",
+  "scripts": {
+    "prd:validate": "node scripts/prd-validate.mjs",
+    "prd:freeze-check": "node scripts/prd-validate.mjs --freeze"
+  },
+  "dependencies": {
+    "yaml": "^2.7.0"
+  }
+}
