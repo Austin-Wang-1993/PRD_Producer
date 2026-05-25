@@ -1,6 +1,21 @@
 # PRD_Producer
 
-通过 **Cursor 对话 + 仓库结构化文件** 维护产品 PRD，并导出可供 AI 稳定 codegen 的 Implementation Brief。
+前端产品研究流水线：三份交付物（BRD → 页面&功能清单 → 用户故事清单），多智能体解耦、质检 + 用户确认、BRD 确认后创建 GitHub 仓库。
+
+**本产品自身的需求文档（自举）：**
+
+- [BRD](products/prd-producer/docs/BRD.md)
+- [页面&功能清单](products/prd-producer/docs/页面功能清单.md)
+- [用户故事清单](products/prd-producer/docs/用户故事清单.md)
+- [产品摘要](docs/PRODUCT.md)
+
+**下一步：** [智能体提示词规划](docs/prompts-outline/README.md)
+
+---
+
+## 历史说明（Cursor 脚手架）
+
+早期版本通过 **Cursor 对话 + 仓库结构化文件** 维护产品 PRD，见 `.cursor/rules` 与 `products/_example`。当前产品方向以 `products/prd-producer/docs/` 为准。
 
 **单一真相不在聊天里**，而在 `products/<产品>/` 下的 md / yaml / briefs。
 
